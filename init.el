@@ -129,6 +129,18 @@
 ;;		  term-mode))
 ;;    (add-to-list 'evil-emacs-state-modes mode)))
 
+;;(defun efs/evil-hook ()
+;;  (dolist (mode '(custom-mode
+;;		  eshell-mode
+;;		  git-rebase-mode
+;;		  erc-mode
+;;		  circe-server-mode
+;;		  circe-chat-mode
+;;		  circe-query-mode
+;;		  sauron-mode
+;;		  term-mode))
+;;    (add-to-list 'evil-emacs-state-modes mode)))
+
 (use-package evil
   :init
   (setq evil-want-integration t)
