@@ -1,0 +1,11 @@
+use-theme 
+use-theme powerline
+ls
+ls -a
+ls
+htop
+htop
+exit
+htop
+(+ 10 10)
+exit

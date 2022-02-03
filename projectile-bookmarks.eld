@@ -1,0 +1,1 @@
+("~/.emacs.d/" "~/Projects/Code/" "~/Projects/Code/reddit/" "~/Projects/Code/emacs-from-scratch/" "~/Projects/Code/emacs-config/" "~/Projects/Code/.git/")
