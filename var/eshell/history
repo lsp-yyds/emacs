@@ -1,0 +1,13 @@
+ls
+gcc macros_preprocessors.c -o test
+./test 
+ls -a
+rm test
+ls
+exit
+gcc -o test test.c
+./test
+exit
+gcc -o test test.c 
+./test
+exit
