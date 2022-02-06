@@ -4,10 +4,15 @@ gcc macros_preprocessors.c -o test
 ls -a
 rm test
 ls
-exit
 gcc -o test test.c
 ./test
-exit
 gcc -o test test.c 
 ./test
+s fold
+sdcv fold
+sdcv case
+sdcv format
+exit
+sdcv cons
+sdcv append
 exit
