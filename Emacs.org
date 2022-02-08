@@ -122,6 +122,9 @@ This section configures basic UI settings that remove unneeded elements to make 
   (column-number-mode)
   (global-display-line-numbers-mode t)
 
+  ;; Set the show paren mode
+  (show-paren-mode t)
+
   ;; Set frame transparency
   (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
   (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
@@ -237,7 +240,8 @@ doom-themes is a great set of themes with a lot of variety and support for many 
 #+begin_src emacs-lisp
 
   (use-package doom-themes
-    :init (load-theme 'doom-palenight t))
+    :init (load-theme 'hober t))
+;;    :init (load-theme 'doom-palenight t))
 
 #+end_src
 
@@ -586,14 +590,14 @@ To execute or export code in =org-mode= code blocks, you’ll need to set up =or
 
 #+begin_src emacs-lisp
 
-  (with-eval-after-load 'org
-    (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-	  (python . t)
-        (C . t)))
+    (with-eval-after-load 'org
+      (org-babel-do-load-languages
+        'org-babel-load-languages
+        '((emacs-lisp . t)
+          (python . t)
+          (C . t)))
 
-      (push '("conf-unix" . conf-unix) org-src-lang-modes))
+        (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 #+end_src
 

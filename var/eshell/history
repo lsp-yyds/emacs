@@ -16,3 +16,9 @@ exit
 sdcv cons
 sdcv append
 exit
+ls
+cd 
+ls -a
+exit
+source .zshenv 
+exit

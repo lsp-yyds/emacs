@@ -67,6 +67,9 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
+;; Set the show paren mode
+(show-paren-mode t)
+
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
@@ -149,7 +152,8 @@
   :commands command-log-mode)
 
 (use-package doom-themes
-  :init (load-theme 'doom-palenight t))
+    :init (load-theme 'hober t))
+;;    :init (load-theme 'doom-palenight t))
 
 (use-package all-the-icons)
 
@@ -404,7 +408,7 @@
   (org-babel-do-load-languages
     'org-babel-load-languages
     '((emacs-lisp . t)
-	(python . t)
+      (python . t)
       (C . t)))
 
     (push '("conf-unix" . conf-unix) org-src-lang-modes))

@@ -1,1 +1,1 @@
-("~/Programming/c/" "~/.emacs.d/" "~/Projects/reddit-clone/" "~/Projects/Code/" "~/Application/emacs/")
+("~/.emacs.d/" "~/Programming/c/" "~/Projects/Code/" "~/Projects/reddit-clone/" "~/Application/emacs/")
