@@ -31,6 +31,7 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+(setq use-package-verbose t)
 
 (use-package auto-package-update
   :custom
@@ -101,6 +102,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (use-package general
+  :after evil
   :config
   (general-create-definer efs/leader-keys
     :keymaps '(normal insert visual emacs)
@@ -162,9 +164,9 @@
   :custom ((doom-modeline-height 15)))
 
 (use-package which-key
-  :init (which-key-mode)
   :diminish which-key-mode
   :config
+  (which-key-mode)
   (setq which-key-idle-delay 1))
 
 (use-package ivy
@@ -528,6 +530,7 @@
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package counsel-projectile
+  :after projectile
   :config (counsel-projectile-mode))
 
 (use-package magit
@@ -548,6 +551,7 @@
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package term
+  :commands term
   :config
   (setq explicit-shell-file-name "zsh")
   ;;(setq explicit-zsh-args '())
@@ -580,7 +584,8 @@
         eshell-hist-ignoredups t
         eshell-scroll-to-bottom-on-input t))
 
-(use-package eshell-git-prompt)
+(use-package eshell-git-prompt
+  :after eshell)
 
 (use-package eshell
   :hook (eshell-first-time-mode . efs/configure-eshell)
@@ -601,6 +606,7 @@
     "l" 'dired-single-buffer))
 
 (use-package dired-single)
+
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 
@@ -617,6 +623,63 @@
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
+
+(defun efs/exwm-update-class ()
+  (exwm-workspace-rename-buffer exwm-class-name))
+
+(use-package exwm
+  :config
+  ;; Set the default number of workspaces
+  (setq exwm-workspace-number 5)
+
+  ;; When window "class" updates, use it to set the buffer name
+  ;; (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
+
+  ;; These keys should always pass through to Emacs
+  (setq exwm-input-prefix-keys
+    '(?\C-x
+      ?\C-u
+      ?\C-h
+      ?\M-x
+      ?\M-`
+      ?\M-&
+      ?\M-:
+      ?\C-\M-j  ;; Buffer list
+      ?\C-\ ))  ;; Ctrl+Space
+
+  ;; Ctrl+Q will enable the next key to be sent directly
+  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
+  ;; Set up global key bindings.  These always work, no matter the input state!
+  ;; Keep in mind that changing this list after EXWM initializes has no effect.
+  (setq exwm-input-global-keys
+        `(
+          ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+          ([?\s-r] . exwm-reset)
+
+          ;; Move between windows
+          ([s-left] . windmove-left)
+          ([s-right] . windmove-right)
+          ([s-up] . windmove-up)
+          ([s-down] . windmove-down)
+
+          ;; Launch applications via shell command
+          ([?\s-&] . (lambda (command)
+                       (interactive (list (read-shell-command "$ ")))
+                       (start-process-shell-command command nil command)))
+
+          ;; Switch workspace
+          ([?\s-w] . exwm-workspace-switch)
+
+          ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))))
+
+  (exwm-enable))
 
 (+ 55 100)
 

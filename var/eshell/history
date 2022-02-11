@@ -12,13 +12,38 @@ s fold
 sdcv fold
 sdcv case
 sdcv format
-exit
 sdcv cons
 sdcv append
-exit
 ls
 cd 
 ls -a
-exit
 source .zshenv 
+sudo ln -f ~/.emacs.d/exwm/EXWM.desktop /usr/share/xsessions/EXWM.desktop
+ls /usr/share/xsessions/
+ls
+qqmusic 
+ls
+firefox 
+cd Application/
+cd Clash/
+ls
+sh clash.sh 
+firefox 
+ls
+pc
+ps -a | grep clash
+cd ..
+cd clash/
+sh clash.sh 
+ps -a | grep clash
+cd ..
+firefox 
+cd Application/
+cd Clash/
+ls
+sh clash.sh 
+ps -a | grep clash
+tsc using-ts.ts 
+exit
+tsc greeter.ts 
 exit
