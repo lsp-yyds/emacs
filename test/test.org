@@ -1,9 +1,0 @@
-#+begin_src c
-
-int main(){
-printf("Hello World!");
-}
-#+end_src
-
-#+RESULTS:
-: None

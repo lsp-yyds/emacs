@@ -490,6 +490,11 @@
   :config
   (pyvenv-mode 1))
 
+(use-package eglot)
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
